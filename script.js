@@ -11,13 +11,11 @@ playBtn.onclick = () => {
   intro();
 };
 
-/* PRINT */
 function print(text) {
   output.innerHTML += `<div>${text}</div>`;
   output.scrollTop = output.scrollHeight;
 }
 
-/* INTRO */
 function intro() {
   print("Terminal Zero Simulation Loaded.");
   print("This is a fictional hacking-style game.");
@@ -26,7 +24,6 @@ function intro() {
   print("Type 'help' to see commands.");
 }
 
-/* COMMAND HANDLER */
 input.addEventListener("keydown", e => {
   if (e.key !== "Enter") return;
   const cmd = input.value.trim().toLowerCase();
@@ -35,12 +32,10 @@ input.addEventListener("keydown", e => {
   handle(cmd);
 });
 
-/* COMMANDS (ALL FAKE) */
 function handle(cmd) {
   switch (cmd) {
     case "help":
-      print("Available commands:");
-      print("- help");
+      print("Commands:");
       print("- scan");
       print("- hack_sim");
       print("- virus_sim");
@@ -51,7 +46,7 @@ function handle(cmd) {
 
     case "scan":
       print("Scanning virtual network...");
-      print("Nodes found: node_alpha, node_beta");
+      print("Nodes detected: alpha, beta");
       break;
 
     case "hack_sim":
@@ -61,17 +56,16 @@ function handle(cmd) {
 
     case "virus_sim":
       print("Simulating fake virus creation...");
-      print("Result: harmless test payload (fictional).");
+      print("Harmless test payload generated.");
       break;
 
     case "decrypt":
-      print("Decrypting sample data...");
-      print("Decryption complete (simulated).");
+      print("Decrypting fictional data...");
+      print("Decryption complete.");
       break;
 
     case "status":
       print("System status: STABLE");
-      print("Simulation integrity: 100%");
       break;
 
     case "clear":
