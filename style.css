@@ -10,13 +10,13 @@ body {
   overflow: hidden;
 }
 
-/* Animated background */
+/* Animated cyber background */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background: linear-gradient(120deg, #05001a, #001f3f, #00ffe1);
-  animation: hue 15s infinite linear;
+  animation: hue 14s infinite linear;
   z-index: -3;
 }
 
@@ -40,76 +40,94 @@ body::before {
   z-index: 5;
 }
 
-/* Boot screen */
-#boot {
-  padding: 30px;
-  font-size: 18px;
-  animation: fadeOut 3s forwards;
+/* START SCREEN */
+#startScreen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  animation: fadeIn 1.5s ease;
 }
 
-@keyframes fadeOut {
-  0% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { opacity: 0; display: none; }
+#startScreen h1 {
+  font-size: 56px;
+  letter-spacing: 6px;
+  text-shadow: 0 0 20px #00ffe1;
 }
 
+#startScreen p {
+  opacity: 0.85;
+  margin-bottom: 30px;
+}
+
+#playBtn {
+  padding: 14px 28px;
+  font-size: 16px;
+  font-family: inherit;
+  background: transparent;
+  color: #00ffe1;
+  border: 2px solid #00ffe1;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#playBtn:hover {
+  background: #00ffe1;
+  color: #001a1a;
+  box-shadow: 0 0 30px #00ffe1;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* GAME */
 .hidden {
   display: none;
 }
 
-/* Desktop */
-#desktop {
+#game {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Window */
-#window {
-  width: 760px;
-  height: 460px;
-  background: rgba(10, 20, 30, 0.7);
-  border-radius: 14px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 0 40px rgba(0,255,200,0.4);
+#terminal {
+  width: 90%;
+  max-width: 1000px;
+  height: 80%;
+  background: rgba(10,20,30,0.75);
+  backdrop-filter: blur(18px);
+  border-radius: 16px;
+  box-shadow: 0 0 50px rgba(0,255,200,0.5);
   display: flex;
   flex-direction: column;
-  position: absolute;
 }
 
-/* Header */
 #header {
   padding: 10px;
-  text-align: center;
   background: linear-gradient(90deg, #00ffe1, #00aaff);
   color: #001a1a;
+  text-align: center;
   font-weight: bold;
-  cursor: move;
 }
 
-/* Output */
 #output {
   flex: 1;
-  padding: 14px;
+  padding: 16px;
   overflow-y: auto;
   font-size: 15px;
 }
 
-/* Input */
 #input {
-  padding: 12px;
   border: none;
-  outline: none;
-  font-family: inherit;
+  padding: 14px;
   background: rgba(0,0,0,0.6);
   color: #00ffe1;
-}
-
-/* Scrollbar */
-#output::-webkit-scrollbar {
-  width: 6px;
-}
-#output::-webkit-scrollbar-thumb {
-  background: #00ffe1;
+  font-family: inherit;
+  outline: none;
 }
