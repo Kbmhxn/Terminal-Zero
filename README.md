@@ -1,5 +1,7 @@
 # Terminal Zero
 
+im a beginner sorry if the game is bad.👍
+
 A fictional terminal-based puzzle game that simulates hacking mechanics for fun and learning.
 
 ⚠️ **Disclaimer**
