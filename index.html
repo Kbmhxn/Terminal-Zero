@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VoidX Executor (Simulation)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+  <div id="topbar">
+    <span>VoidX Executor — SIMULATION</span>
+    <span class="status">Status: Not Attached</span>
+  </div>
+
+  <div id="main">
+    <textarea id="editor" placeholder="-- Paste your fake script here
+-- This is a simulation only"></textarea>
+
+    <div id="sidebar">
+      <button onclick="attach()">Attach</button>
+      <button onclick="execute()">Execute</button>
+      <button onclick="clearEditor()">Clear</button>
+    </div>
+  </div>
+
+  <div id="console"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
