@@ -6,11 +6,21 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="terminal">
-    <div id="output">Welcome to Terminal Zero.<br>Type <b>help</b> to begin.</div>
-    <input id="input" autofocus placeholder=">">
-  </div>
 
-  <script src="script.js"></script>
+<div id="boot">
+  <p>Terminal Zero OS v1.0</p>
+  <p>Initializing system...</p>
+  <p>Loading modules...</p>
+</div>
+
+<div id="desktop" class="hidden">
+  <div id="window">
+    <div id="header">TERMINAL ZERO</div>
+    <div id="output"></div>
+    <input id="input" placeholder="type here..." autofocus />
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
