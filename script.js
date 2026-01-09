@@ -1,120 +1,77 @@
+const startScreen = document.getElementById("startScreen");
+const playBtn = document.getElementById("playBtn");
+const game = document.getElementById("game");
 const output = document.getElementById("output");
 const input = document.getElementById("input");
-const boot = document.getElementById("boot");
-const desktop = document.getElementById("desktop");
-const windowEl = document.getElementById("window");
-const header = document.getElementById("header");
 
-/* Game state */
-let state = JSON.parse(localStorage.getItem("tz_state")) || {
-  mode: null,
-  unlocked: {
-    scan: false,
-    files: false
-  }
-};
-
-/* Fake file system */
-const fs = {
-  home: {
-    "welcome.txt": "Welcome to Terminal Zero.",
-    "note.txt": "This system is a simulation only."
-  }
-};
-
-/* Boot */
-setTimeout(() => {
-  boot.style.display = "none";
-  desktop.classList.remove("hidden");
+/* START BUTTON */
+playBtn.onclick = () => {
+  startScreen.classList.add("hidden");
+  game.classList.remove("hidden");
   intro();
-}, 3000);
+};
 
-/* Print helper */
+/* PRINT */
 function print(text) {
   output.innerHTML += `<div>${text}</div>`;
   output.scrollTop = output.scrollHeight;
-  save();
 }
 
-/* Intro */
+/* INTRO */
 function intro() {
-  if (state.mode) {
-    print("System restored.");
-    print("Type 'help'.");
-    return;
-  }
-
-  print("Terminal Zero initialized.");
-  print("Choose mode:");
-  print("1) tutorial");
-  print("2) experienced");
+  print("Terminal Zero Simulation Loaded.");
+  print("This is a fictional hacking-style game.");
+  print("Nothing here is real.");
+  print("");
+  print("Type 'help' to see commands.");
 }
 
-/* Input handler */
+/* COMMAND HANDLER */
 input.addEventListener("keydown", e => {
   if (e.key !== "Enter") return;
   const cmd = input.value.trim().toLowerCase();
   input.value = "";
   print("> " + cmd);
-
-  if (!state.mode) return chooseMode(cmd);
   handle(cmd);
 });
 
-/* Mode selection */
-function chooseMode(cmd) {
-  if (cmd === "tutorial" || cmd === "1") {
-    state.mode = "tutorial";
-    print("Tutorial mode enabled.");
-    print("Type 'help'.");
-  } else if (cmd === "experienced" || cmd === "2") {
-    state.mode = "experienced";
-    state.unlocked.scan = true;
-    state.unlocked.files = true;
-    print("Experienced mode enabled.");
-  } else {
-    print("Type 'tutorial' or 'experienced'.");
-  }
-}
-
-/* Commands */
+/* COMMANDS (ALL FAKE) */
 function handle(cmd) {
   switch (cmd) {
     case "help":
-      print("Commands:");
+      print("Available commands:");
       print("- help");
-      if (state.unlocked.scan) print("- scan");
-      if (state.unlocked.files) {
-        print("- ls");
-        print("- open welcome.txt");
-        print("- open note.txt");
-      }
+      print("- scan");
+      print("- hack_sim");
+      print("- virus_sim");
+      print("- decrypt");
+      print("- status");
       print("- clear");
-
-      if (state.mode === "tutorial" && !state.unlocked.scan) {
-        print("Tutorial hint: try 'scan'");
-        state.unlocked.scan = true;
-      }
       break;
 
     case "scan":
-      if (!state.unlocked.scan) return print("Command locked.");
-      print("Scanning simulation...");
-      print("Directory found: home/");
-      state.unlocked.files = true;
+      print("Scanning virtual network...");
+      print("Nodes found: node_alpha, node_beta");
       break;
 
-    case "ls":
-      if (!state.unlocked.files) return print("Access denied.");
-      Object.keys(fs.home).forEach(f => print(f));
+    case "hack_sim":
+      print("Running hacking simulation...");
+      print("Access granted (simulation).");
       break;
 
-    case "open welcome.txt":
-      print(fs.home["welcome.txt"]);
+    case "virus_sim":
+      print("Simulating fake virus creation...");
+      print("Result: harmless test payload (fictional).");
       break;
 
-    case "open note.txt":
-      print(fs.home["note.txt"]);
+    case "decrypt":
+      print("Decrypting sample data...");
+      print("Decryption complete (simulated).");
+      break;
+
+    case "status":
+      print("System status: STABLE");
+      print("Simulation integrity: 100%");
       break;
 
     case "clear":
@@ -122,28 +79,6 @@ function handle(cmd) {
       break;
 
     default:
-      print("Unknown command.");
+      print("Unknown command. Type 'help'.");
   }
 }
-
-/* Save progress */
-function save() {
-  localStorage.setItem("tz_state", JSON.stringify(state));
-}
-
-/* Draggable window */
-let dragging = false, ox = 0, oy = 0;
-
-header.addEventListener("mousedown", e => {
-  dragging = true;
-  ox = e.clientX - windowEl.offsetLeft;
-  oy = e.clientY - windowEl.offsetTop;
-});
-
-document.addEventListener("mouseup", () => dragging = false);
-
-document.addEventListener("mousemove", e => {
-  if (!dragging) return;
-  windowEl.style.left = e.clientX - ox + "px";
-  windowEl.style.top = e.clientY - oy + "px";
-});
