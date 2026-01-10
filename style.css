@@ -5,83 +5,117 @@
 body {
   margin: 0;
   height: 100vh;
-  background: #0b0f14;
   font-family: Consolas, monospace;
-  color: #e6e6e6;
+  background: #050b0f;
+  color: #eaffea;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#app {
-  width: 900px;
-  height: 500px;
-  background: #10161d;
-  border-radius: 8px;
-  box-shadow: 0 0 30px rgba(0,0,0,0.8);
-  display: flex;
-  flex-direction: column;
+/* START */
+#startScreen {
+  text-align: center;
 }
 
-#topbar {
-  height: 40px;
-  background: #0f2027;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 14px;
-  font-size: 14px;
+#startScreen h1 {
+  font-size: 60px;
+  color: #00ff88;
+  margin-bottom: 30px;
 }
 
-.status {
-  color: #ff5555;
-}
-
-#main {
-  flex: 1;
-  display: flex;
-}
-
-#editor {
-  flex: 1;
-  background: #0d1117;
-  color: #9cdcfe;
+#startBtn {
+  padding: 16px 40px;
+  font-size: 18px;
+  background: #00ff88;
   border: none;
-  padding: 12px;
-  resize: none;
-  outline: none;
-  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
 }
 
+#startBtn:hover {
+  box-shadow: 0 0 20px #00ff88;
+}
+
+/* LOADING */
+#loading {
+  font-size: 20px;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0.4; }
+}
+
+.hidden {
+  display: none;
+}
+
+/* APP */
+#app {
+  width: 1000px;
+  height: 550px;
+  background: #0b1116;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* SIDEBAR */
 #sidebar {
-  width: 160px;
-  background: #0f141b;
+  width: 220px;
+  background: #0f1820;
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  padding: 10px;
   gap: 10px;
 }
 
 #sidebar button {
-  padding: 10px;
-  background: #1f6feb;
+  padding: 12px;
+  background: #1a2a36;
+  color: #00ff88;
   border: none;
-  color: white;
   cursor: pointer;
-  font-size: 14px;
-  border-radius: 4px;
 }
 
 #sidebar button:hover {
-  background: #388bfd;
+  background: #00ff88;
+  color: #001a0f;
 }
 
-#console {
-  height: 120px;
-  background: #0a0e13;
-  border-top: 1px solid #222;
+/* CONTENT */
+#content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sim textarea {
+  width: 100%;
+  height: 150px;
+  background: #020607;
+  color: #9cffd0;
+  border: none;
   padding: 10px;
-  font-size: 13px;
+}
+
+.sim button {
+  margin-top: 10px;
+  padding: 10px;
+  background: #00ff88;
+  border: none;
+  cursor: pointer;
+}
+
+/* LOG */
+#log {
+  margin-top: auto;
+  background: #020607;
+  padding: 10px;
+  font-size: 14px;
+  height: 120px;
   overflow-y: auto;
-  color: #8aff8a;
+  color: #7dffbd;
 }
