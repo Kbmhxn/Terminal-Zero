@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>VoidX Control Panel (Simulation)</title>
+  <title>VoidX Training System</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- START SCREEN -->
 <div id="startScreen">
-  <h1>VoidX</h1>
-  <button id="startBtn">▶ Start Program</button>
+  <button id="startBtn">START</button>
 </div>
 
 <!-- LOADING -->
@@ -18,43 +17,44 @@
   <p>Loading assets...</p>
 </div>
 
-<!-- MAIN APP -->
-<div id="app" class="hidden">
-  <div id="sidebar">
-    <button onclick="showSim('executor')">Executor Simulation</button>
-    <button onclick="showSim('scripting')">Scripting Simulation</button>
-    <button onclick="showSim('virus')">Virus Simulation</button>
-  </div>
-
-  <div id="content">
-    <div id="executor" class="sim hidden">
-      <h2>Executor Simulation</h2>
-      <textarea placeholder="Paste fake script here (simulation only)"></textarea>
-      <button onclick="logSim('Executed fake script')">Execute</button>
-    </div>
-
-    <div id="scripting" class="sim hidden">
-      <h2>Scripting Simulation</h2>
-      <p>Learn how scripts are structured (fictional).</p>
-      <pre>
-print("Hello World")
--- variables
--- loops
--- logic
-      </pre>
-    </div>
-
-    <div id="virus" class="sim hidden">
-      <h2>Virus Simulation</h2>
-      <p>This simulates how malware is detected and blocked.</p>
-      <button onclick="logSim('Fake threat quarantined')">
-        Run Virus Scan
-      </button>
-    </div>
-
-    <div id="log"></div>
+<!-- MAIN MENU -->
+<div id="menu" class="hidden">
+  <h1>VoidX Training System</h1>
+  <div class="menu-buttons">
+    <button onclick="openModule('executor')">Training Executor</button>
+    <button onclick="openModule('virus')">Training Virus</button>
+    <button onclick="openModule('analyzer')">System Analyzer</button>
   </div>
 </div>
+
+<!-- MODULES -->
+<div id="executor" class="module hidden">
+  <h2>Training Executor</h2>
+  <p>This simulates how executors work — no real execution.</p>
+  <textarea placeholder="Paste fake script here (simulation only)"></textarea>
+  <button onclick="log('Fake script executed')">Execute</button>
+  <button class="back" onclick="goBack()">← Back</button>
+</div>
+
+<div id="virus" class="module hidden">
+  <h2>Training Virus</h2>
+  <p>Learn how malware is detected and blocked (fictional).</p>
+  <button onclick="log('Fake threat detected')">Scan System</button>
+  <button onclick="log('Threat quarantined')">Quarantine</button>
+  <button class="back" onclick="goBack()">← Back</button>
+</div>
+
+<div id="analyzer" class="module hidden">
+  <h2>System Analyzer</h2>
+  <p>Understand system states and logs.</p>
+  <button onclick="log('CPU Load: Normal')">Check CPU</button>
+  <button onclick="log('Memory Usage: Stable')">Check Memory</button>
+  <button onclick="log('No anomalies found')">Run Analysis</button>
+  <button class="back" onclick="goBack()">← Back</button>
+</div>
+
+<!-- LOG -->
+<div id="logBox"></div>
 
 <script src="script.js"></script>
 </body>
