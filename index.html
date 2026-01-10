@@ -2,81 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>VoidX Training System</title>
+  <title>VoidX Training</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- START SCREEN -->
 <div id="startScreen" class="screen">
   <button id="startBtn">START SYSTEM</button>
 </div>
 
-<!-- LOADING SCREEN -->
 <div id="loadingScreen" class="screen hidden">
-  <p>Initializing training environment...</p>
+  <p>Loading assets...</p>
 </div>
 
-<!-- MENU SCREEN -->
 <div id="menuScreen" class="screen hidden">
-  <h1>VoidX Training Modules</h1>
-  <div class="menu">
-    <button onclick="openModule('executor')">Training Executor</button>
-    <button onclick="openModule('virus')">Threat Defense Lab</button>
-    <button onclick="openModule('scripting')">Scripting Console</button>
-  </div>
+  <h1>Training Modules</h1>
+  <button onclick="openModule('executor')">Training Executor</button>
+  <button onclick="openModule('virus')">Threat Defense</button>
+  <button onclick="openModule('lab')">System Lab</button>
 </div>
 
 <div id="moduleScreen" class="screen hidden">
-  
-  <!-- EXECUTOR -->
+
   <div id="executor" class="module hidden">
-    <h2>Training Executor</h2>
-    <p>Inspect and simulate script execution safely.</p>
-
-    <textarea id="execInput" placeholder="Paste training script here (simulation only)"></textarea>
-
-    <div class="row">
-      <button onclick="simulateExecutor()">Simulate Execution</button>
-      <button class="back" onclick="backToMenu()">← Back</button>
-    </div>
-
+    <h2>Executor Simulation</h2>
+    <textarea placeholder="Fake script here"></textarea>
+    <button onclick="fakeRun()">Run</button>
+    <button onclick="back()">Back</button>
     <div class="console" id="execConsole"></div>
   </div>
 
-  <!-- VIRUS -->
   <div id="virus" class="module hidden">
-    <h2>Threat Defense Lab</h2>
-    <p>Learn how systems detect and stop malicious behavior.</p>
-
-    <div class="row">
-      <button onclick="scanThreat()">Run Scan</button>
-      <button onclick="quarantine()">Quarantine</button>
-      <button class="back" onclick="backToMenu()">← Back</button>
-    </div>
-
+    <h2>Threat Defense</h2>
+    <button onclick="fakeScan()">Scan</button>
+    <button onclick="back()">Back</button>
     <div class="console" id="virusConsole"></div>
   </div>
 
-  <!-- SCRIPTING -->
-  <div id="scripting" class="module hidden">
-    <h2>Scripting Console</h2>
-    <p>Understand scripting concepts step-by-step.</p>
-
-    <div class="lesson">
-      <p><strong>Lesson:</strong> Variables & Output (fictional)</p>
-      <pre>
-local speed = 50
-print("Speed set to", speed)
-      </pre>
-    </div>
-
-    <div class="row">
-      <button onclick="nextLesson()">Next Lesson</button>
-      <button class="back" onclick="backToMenu()">← Back</button>
-    </div>
-
-    <div class="console" id="scriptConsole"></div>
+  <div id="lab" class="module hidden">
+    <h2>System Lab</h2>
+    <p>CPU: OK<br>Memory: OK<br>Security: SIMULATED</p>
+    <button onclick="back()">Back</button>
   </div>
 
 </div>
@@ -84,4 +50,3 @@ print("Speed set to", speed)
 <script src="script.js"></script>
 </body>
 </html>
-
