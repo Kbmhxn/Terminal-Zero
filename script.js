@@ -1,8 +1,8 @@
 const startScreen = document.getElementById("startScreen");
 const startBtn = document.getElementById("startBtn");
 const loading = document.getElementById("loading");
-const app = document.getElementById("app");
-const logBox = document.getElementById("log");
+const menu = document.getElementById("menu");
+const logBox = document.getElementById("logBox");
 
 startBtn.onclick = () => {
   startScreen.classList.add("hidden");
@@ -10,15 +10,21 @@ startBtn.onclick = () => {
 
   setTimeout(() => {
     loading.classList.add("hidden");
-    app.classList.remove("hidden");
-    log("System initialized (simulation)");
+    menu.classList.remove("hidden");
+    log("System ready (simulation)");
   }, 2000);
 };
 
-function showSim(id) {
-  document.querySelectorAll(".sim").forEach(s => s.classList.add("hidden"));
+function openModule(id) {
+  menu.classList.add("hidden");
   document.getElementById(id).classList.remove("hidden");
   log("Opened " + id + " module");
+}
+
+function goBack() {
+  document.querySelectorAll(".module").forEach(m => m.classList.add("hidden"));
+  menu.classList.remove("hidden");
+  log("Returned to main menu");
 }
 
 function log(text) {
@@ -26,6 +32,3 @@ function log(text) {
   logBox.scrollTop = logBox.scrollHeight;
 }
 
-function logSim(text) {
-  log("✔ " + text);
-}
