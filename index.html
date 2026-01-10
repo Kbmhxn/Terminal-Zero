@@ -1,62 +1,173 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>VoidX Debug Fix</title>
-  <style>
-    body {
-      background: black;
-      color: #00ff88;
-      font-family: monospace;
-    }
+<meta charset="UTF-8">
+<title>Terminal Zero – Training Ops</title>
 
-    .screen {
-      display: none;
-      padding: 100px;
-      border: 2px solid #00ff88;
-      margin: 20px;
-    }
+<style>
+body {
+  margin: 0;
+  background: black;
+  color: #00ff88;
+  font-family: Consolas, monospace;
+}
 
-    button {
-      padding: 15px 40px;
-      font-size: 18px;
-      background: black;
-      color: #00ff88;
-      border: 2px solid #00ff88;
-      cursor: pointer;
-    }
-  </style>
+button {
+  background: black;
+  color: #00ff88;
+  border: 2px solid #00ff88;
+  padding: 12px 28px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.screen {
+  display: none;
+  height: 100vh;
+  padding: 40px;
+}
+
+#start { display: block; text-align: center; padding-top: 200px; }
+#loading { text-align: center; padding-top: 200px; }
+#menu { text-align: center; padding-top: 150px; }
+
+#desktop {
+  background: #0b1220;
+  color: white;
+}
+
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #111;
+  padding: 6px;
+}
+
+.window {
+  background: #020607;
+  border: 2px solid #00ff88;
+  width: 500px;
+  padding: 10px;
+  margin-top: 40px;
+}
+
+input {
+  width: 100%;
+  background: black;
+  color: #00ff88;
+  border: none;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.log {
+  height: 120px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+.tutorial {
+  background: #001a0f;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-left: 4px solid #00ff88;
+}
+</style>
 </head>
+
 <body>
 
-<div id="start" class="screen" style="display:block;">
-  <button onclick="start()">START SYSTEM</button>
+<!-- START -->
+<div id="start" class="screen">
+  <h1>TERMINAL ZERO</h1>
+  <p>Training Simulation</p>
+  <button onclick="startGame()">START</button>
 </div>
 
+<!-- LOADING -->
 <div id="loading" class="screen">
-  <p>LOADING ASSETS...</p>
+  <p>Loading simulation assets...</p>
 </div>
 
+<!-- MENU -->
 <div id="menu" class="screen">
-  <h2>MODULE SELECT</h2>
-  <button>Training Executor</button>
-  <button>Virus Defense</button>
-  <button>System Lab</button>
+  <h2>Select Mission</h2>
+  <button onclick="startMission()">Fake Hack Mission</button>
+</div>
+
+<!-- DESKTOP -->
+<div id="desktop" class="screen">
+
+  <div class="tutorial" id="tutorialBox">
+    Welcome trainee. Click "Terminal.exe" to begin.
+  </div>
+
+  <button onclick="openTerminal()">Terminal.exe</button>
+
+  <div id="terminal" class="window" style="display:none;">
+    <div class="log" id="terminalLog"></div>
+    <input id="terminalInput" placeholder="type here..." onkeydown="handleCmd(event)">
+  </div>
+
+  <div class="taskbar">Terminal Zero OS (Simulation)</div>
 </div>
 
 <script>
-  function start() {
-    console.log("START CLICKED");
+function show(id) {
+  document.querySelectorAll(".screen").forEach(s => s.style.display = "none");
+  document.getElementById(id).style.display = "block";
+}
 
-    document.getElementById("start").style.display = "none";
-    document.getElementById("loading").style.display = "block";
+function startGame() {
+  show("loading");
+  setTimeout(() => show("menu"), 1500);
+}
 
-    setTimeout(() => {
-      console.log("SHOW MENU");
-      document.getElementById("loading").style.display = "none";
-      document.getElementById("menu").style.display = "block";
-    }, 2000);
+function startMission() {
+  show("desktop");
+}
+
+function openTerminal() {
+  document.getElementById("terminal").style.display = "block";
+  tutorial("Type: scan");
+}
+
+function tutorial(text) {
+  document.getElementById("tutorialBox").innerText = text;
+}
+
+const log = document.getElementById("terminalLog");
+
+function print(text) {
+  log.innerHTML += text + "<br>";
+  log.scrollTop = log.scrollHeight;
+}
+
+function handleCmd(e) {
+  if (e.key !== "Enter") return;
+
+  const input = e.target.value.toLowerCase();
+  e.target.value = "";
+  print("> " + input);
+
+  if (input === "scan") {
+    print("Scanning system...");
+    tutorial("Good. Now type: breach");
   }
+  else if (input === "breach") {
+    print("Bypassing virtual firewall...");
+    tutorial("Nice. Final step: inject");
+  }
+  else if (input === "inject") {
+    print("Payload injected (simulation)");
+    tutorial("MISSION COMPLETE ✔");
+  }
+  else {
+    print("Unknown command (simulation)");
+  }
+}
 </script>
 
 </body>
