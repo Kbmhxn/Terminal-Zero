@@ -1,52 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>VoidX Training</title>
-  <link rel="stylesheet" href="style.css">
+  <title>VoidX Debug Fix</title>
+  <style>
+    body {
+      background: black;
+      color: #00ff88;
+      font-family: monospace;
+    }
+
+    .screen {
+      display: none;
+      padding: 100px;
+      border: 2px solid #00ff88;
+      margin: 20px;
+    }
+
+    button {
+      padding: 15px 40px;
+      font-size: 18px;
+      background: black;
+      color: #00ff88;
+      border: 2px solid #00ff88;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
-<div id="startScreen" class="screen">
-  <button id="startBtn">START SYSTEM</button>
+<div id="start" class="screen" style="display:block;">
+  <button onclick="start()">START SYSTEM</button>
 </div>
 
-<div id="loadingScreen" class="screen hidden">
-  <p>Loading assets...</p>
+<div id="loading" class="screen">
+  <p>LOADING ASSETS...</p>
 </div>
 
-<div id="menuScreen" class="screen hidden">
-  <h1>Training Modules</h1>
-  <button onclick="openModule('executor')">Training Executor</button>
-  <button onclick="openModule('virus')">Threat Defense</button>
-  <button onclick="openModule('lab')">System Lab</button>
+<div id="menu" class="screen">
+  <h2>MODULE SELECT</h2>
+  <button>Training Executor</button>
+  <button>Virus Defense</button>
+  <button>System Lab</button>
 </div>
 
-<div id="moduleScreen" class="screen hidden">
+<script>
+  function start() {
+    console.log("START CLICKED");
 
-  <div id="executor" class="module hidden">
-    <h2>Executor Simulation</h2>
-    <textarea placeholder="Fake script here"></textarea>
-    <button onclick="fakeRun()">Run</button>
-    <button onclick="back()">Back</button>
-    <div class="console" id="execConsole"></div>
-  </div>
+    document.getElementById("start").style.display = "none";
+    document.getElementById("loading").style.display = "block";
 
-  <div id="virus" class="module hidden">
-    <h2>Threat Defense</h2>
-    <button onclick="fakeScan()">Scan</button>
-    <button onclick="back()">Back</button>
-    <div class="console" id="virusConsole"></div>
-  </div>
+    setTimeout(() => {
+      console.log("SHOW MENU");
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("menu").style.display = "block";
+    }, 2000);
+  }
+</script>
 
-  <div id="lab" class="module hidden">
-    <h2>System Lab</h2>
-    <p>CPU: OK<br>Memory: OK<br>Security: SIMULATED</p>
-    <button onclick="back()">Back</button>
-  </div>
-
-</div>
-
-<script src="script.js"></script>
 </body>
 </html>
