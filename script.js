@@ -1,48 +1,31 @@
-const consoleBox = document.getElementById("console");
-const editor = document.getElementById("editor");
-const statusText = document.querySelector(".status");
+const startScreen = document.getElementById("startScreen");
+const startBtn = document.getElementById("startBtn");
+const loading = document.getElementById("loading");
+const app = document.getElementById("app");
+const logBox = document.getElementById("log");
 
-let attached = false;
+startBtn.onclick = () => {
+  startScreen.classList.add("hidden");
+  loading.classList.remove("hidden");
+
+  setTimeout(() => {
+    loading.classList.add("hidden");
+    app.classList.remove("hidden");
+    log("System initialized (simulation)");
+  }, 2000);
+};
+
+function showSim(id) {
+  document.querySelectorAll(".sim").forEach(s => s.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+  log("Opened " + id + " module");
+}
 
 function log(text) {
-  consoleBox.innerHTML += text + "<br>";
-  consoleBox.scrollTop = consoleBox.scrollHeight;
+  logBox.innerHTML += "[SIM] " + text + "<br>";
+  logBox.scrollTop = logBox.scrollHeight;
 }
 
-function attach() {
-  if (attached) {
-    log("[!] Already attached (simulation)");
-    return;
-  }
-
-  log("[*] Attaching to fictional process...");
-  setTimeout(() => {
-    attached = true;
-    statusText.textContent = "Status: Attached (Simulated)";
-    statusText.style.color = "#55ff55";
-    log("[✓] Successfully attached (simulation only)");
-  }, 1000);
-}
-
-function execute() {
-  if (!attached) {
-    log("[!] Error: Not attached (simulation)");
-    return;
-  }
-
-  if (!editor.value.trim()) {
-    log("[!] No script provided");
-    return;
-  }
-
-  log("[*] Executing script (simulation)...");
-  setTimeout(() => {
-    log("[✓] Script executed successfully");
-    log("[i] No real actions were performed");
-  }, 800);
-}
-
-function clearEditor() {
-  editor.value = "";
-  log("[i] Editor cleared");
+function logSim(text) {
+  log("✔ " + text);
 }
