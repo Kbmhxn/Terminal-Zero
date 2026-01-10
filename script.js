@@ -1,34 +1,59 @@
 const startScreen = document.getElementById("startScreen");
-const startBtn = document.getElementById("startBtn");
-const loading = document.getElementById("loading");
-const menu = document.getElementById("menu");
-const logBox = document.getElementById("logBox");
+const loadingScreen = document.getElementById("loadingScreen");
+const menuScreen = document.getElementById("menuScreen");
+const moduleScreen = document.getElementById("moduleScreen");
 
-startBtn.onclick = () => {
+document.getElementById("startBtn").onclick = () => {
   startScreen.classList.add("hidden");
-  loading.classList.remove("hidden");
+  loadingScreen.classList.remove("hidden");
 
   setTimeout(() => {
-    loading.classList.add("hidden");
-    menu.classList.remove("hidden");
-    log("System ready (simulation)");
-  }, 2000);
+    loadingScreen.classList.add("hidden");
+    menuScreen.classList.remove("hidden");
+  }, 2200);
 };
 
 function openModule(id) {
-  menu.classList.add("hidden");
-  document.getElementById(id).classList.remove("hidden");
-  log("Opened " + id + " module");
-}
-
-function goBack() {
+  menuScreen.classList.add("hidden");
+  moduleScreen.classList.remove("hidden");
   document.querySelectorAll(".module").forEach(m => m.classList.add("hidden"));
-  menu.classList.remove("hidden");
-  log("Returned to main menu");
+  document.getElementById(id).classList.remove("hidden");
 }
 
-function log(text) {
-  logBox.innerHTML += "[SIM] " + text + "<br>";
-  logBox.scrollTop = logBox.scrollHeight;
+/* BACK */
+function backToMenu() {
+  moduleScreen.classList.add("hidden");
+  menuScreen.classList.remove("hidden");
 }
 
+/* EXECUTOR SIM */
+function simulateExecutor() {
+  const c = document.getElementById("execConsole");
+  c.innerHTML += "[SIM] Parsing script...\n";
+  setTimeout(() => c.innerHTML += "[SIM] Validating syntax...\n", 500);
+  setTimeout(() => c.innerHTML += "[SIM] Execution complete (simulation)\n", 1000);
+  c.scrollTop = c.scrollHeight;
+}
+
+/* VIRUS SIM */
+function scanThreat() {
+  const c = document.getElementById("virusConsole");
+  c.innerHTML += "[SCAN] Analyzing system...\n";
+  setTimeout(() => c.innerHTML += "[SCAN] 1 suspicious pattern found\n", 700);
+  c.scrollTop = c.scrollHeight;
+}
+
+function quarantine() {
+  const c = document.getElementById("virusConsole");
+  c.innerHTML += "[DEFENSE] Threat isolated successfully\n";
+  c.scrollTop = c.scrollHeight;
+}
+
+/* SCRIPTING SIM */
+let lesson = 1;
+function nextLesson() {
+  const c = document.getElementById("scriptConsole");
+  lesson++;
+  c.innerHTML += `[LESSON ${lesson}] New concept unlocked (simulation)\n`;
+  c.scrollTop = c.scrollHeight;
+}
