@@ -1,0 +1,87 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: #0b0f14;
+  font-family: Consolas, monospace;
+  color: #e6e6e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  width: 900px;
+  height: 500px;
+  background: #10161d;
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
+  display: flex;
+  flex-direction: column;
+}
+
+#topbar {
+  height: 40px;
+  background: #0f2027;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 14px;
+  font-size: 14px;
+}
+
+.status {
+  color: #ff5555;
+}
+
+#main {
+  flex: 1;
+  display: flex;
+}
+
+#editor {
+  flex: 1;
+  background: #0d1117;
+  color: #9cdcfe;
+  border: none;
+  padding: 12px;
+  resize: none;
+  outline: none;
+  font-size: 14px;
+}
+
+#sidebar {
+  width: 160px;
+  background: #0f141b;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+}
+
+#sidebar button {
+  padding: 10px;
+  background: #1f6feb;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+#sidebar button:hover {
+  background: #388bfd;
+}
+
+#console {
+  height: 120px;
+  background: #0a0e13;
+  border-top: 1px solid #222;
+  padding: 10px;
+  font-size: 13px;
+  overflow-y: auto;
+  color: #8aff8a;
+}
