@@ -8,53 +8,79 @@
 <body>
 
 <!-- START SCREEN -->
-<div id="startScreen">
-  <button id="startBtn">START</button>
+<div id="startScreen" class="screen">
+  <button id="startBtn">START SYSTEM</button>
 </div>
 
-<!-- LOADING -->
-<div id="loading" class="hidden">
-  <p>Loading assets...</p>
+<!-- LOADING SCREEN -->
+<div id="loadingScreen" class="screen hidden">
+  <p>Initializing training environment...</p>
 </div>
 
-<!-- MAIN MENU -->
-<div id="menu" class="hidden">
-  <h1>VoidX Training System</h1>
-  <div class="menu-buttons">
+<!-- MENU SCREEN -->
+<div id="menuScreen" class="screen hidden">
+  <h1>VoidX Training Modules</h1>
+  <div class="menu">
     <button onclick="openModule('executor')">Training Executor</button>
-    <button onclick="openModule('virus')">Training Virus</button>
-    <button onclick="openModule('analyzer')">System Analyzer</button>
+    <button onclick="openModule('virus')">Threat Defense Lab</button>
+    <button onclick="openModule('scripting')">Scripting Console</button>
   </div>
 </div>
 
-<!-- MODULES -->
-<div id="executor" class="module hidden">
-  <h2>Training Executor</h2>
-  <p>This simulates how executors work — no real execution.</p>
-  <textarea placeholder="Paste fake script here (simulation only)"></textarea>
-  <button onclick="log('Fake script executed')">Execute</button>
-  <button class="back" onclick="goBack()">← Back</button>
-</div>
+<!-- MODULE SCREEN -->
+<div id="moduleScreen" class="screen hidden">
 
-<div id="virus" class="module hidden">
-  <h2>Training Virus</h2>
-  <p>Learn how malware is detected and blocked (fictional).</p>
-  <button onclick="log('Fake threat detected')">Scan System</button>
-  <button onclick="log('Threat quarantined')">Quarantine</button>
-  <button class="back" onclick="goBack()">← Back</button>
-</div>
+  <!-- EXECUTOR -->
+  <div id="executor" class="module hidden">
+    <h2>Training Executor</h2>
+    <p>Inspect and simulate script execution safely.</p>
 
-<div id="analyzer" class="module hidden">
-  <h2>System Analyzer</h2>
-  <p>Understand system states and logs.</p>
-  <button onclick="log('CPU Load: Normal')">Check CPU</button>
-  <button onclick="log('Memory Usage: Stable')">Check Memory</button>
-  <button onclick="log('No anomalies found')">Run Analysis</button>
-  <button class="back" onclick="goBack()">← Back</button>
-</div>
+    <textarea id="execInput" placeholder="Paste training script here (simulation only)"></textarea>
 
-<!-- LOG -->
-<div id="logBox"></div>
+    <div class="row">
+      <button onclick="simulateExecutor()">Simulate Execution</button>
+      <button class="back" onclick="backToMenu()">← Back</button>
+    </div>
+
+    <div class="console" id="execConsole"></div>
+  </div>
+
+  <!-- VIRUS -->
+  <div id="virus" class="module hidden">
+    <h2>Threat Defense Lab</h2>
+    <p>Learn how systems detect and stop malicious behavior.</p>
+
+    <div class="row">
+      <button onclick="scanThreat()">Run Scan</button>
+      <button onclick="quarantine()">Quarantine</button>
+      <button class="back" onclick="backToMenu()">← Back</button>
+    </div>
+
+    <div class="console" id="virusConsole"></div>
+  </div>
+
+  <!-- SCRIPTING -->
+  <div id="scripting" class="module hidden">
+    <h2>Scripting Console</h2>
+    <p>Understand scripting concepts step-by-step.</p>
+
+    <div class="lesson">
+      <p><strong>Lesson:</strong> Variables & Output (fictional)</p>
+      <pre>
+local speed = 50
+print("Speed set to", speed)
+      </pre>
+    </div>
+
+    <div class="row">
+      <button onclick="nextLesson()">Next Lesson</button>
+      <button class="back" onclick="backToMenu()">← Back</button>
+    </div>
+
+    <div class="console" id="scriptConsole"></div>
+  </div>
+
+</div>
 
 <script src="script.js"></script>
 </body>
