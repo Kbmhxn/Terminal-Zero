@@ -5,41 +5,42 @@
 body {
   margin: 0;
   height: 100vh;
-  background: black;
-  color: #00ff88;
+  background: #050a0f;
+  color: #9cffd0;
   font-family: Consolas, monospace;
+}
+
+/* SCREENS */
+.screen {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-/* HIDDEN */
 .hidden {
   display: none;
 }
 
 /* START */
-#startScreen {
-  text-align: center;
-}
-
 #startBtn {
-  padding: 20px 60px;
-  font-size: 22px;
-  background: black;
+  padding: 18px 60px;
+  font-size: 20px;
+  background: transparent;
   color: #00ff88;
   border: 2px solid #00ff88;
   cursor: pointer;
 }
 
 #startBtn:hover {
-  box-shadow: 0 0 20px #00ff88;
+  box-shadow: 0 0 25px #00ff88;
 }
 
 /* LOADING */
-#loading {
-  font-size: 20px;
-  animation: blink 1.5s infinite;
+#loadingScreen {
+  font-size: 18px;
+  animation: blink 1.3s infinite;
 }
 
 @keyframes blink {
@@ -47,26 +48,24 @@ body {
 }
 
 /* MENU */
-#menu {
-  text-align: center;
+#menuScreen h1 {
+  margin-bottom: 30px;
 }
 
-.menu-buttons {
+.menu {
   display: flex;
   gap: 20px;
-  margin-top: 30px;
 }
 
-.menu-buttons button {
-  padding: 20px;
-  font-size: 16px;
-  background: #001a10;
+.menu button {
+  padding: 14px 20px;
+  background: #001a0f;
   color: #00ff88;
   border: 1px solid #00ff88;
   cursor: pointer;
 }
 
-.menu-buttons button:hover {
+.menu button:hover {
   background: #00ff88;
   color: black;
 }
@@ -74,43 +73,47 @@ body {
 /* MODULES */
 .module {
   width: 800px;
-  background: #020906;
-  padding: 20px;
-  border: 1px solid #00ff88;
 }
 
-.module textarea {
+textarea {
   width: 100%;
   height: 140px;
-  background: black;
-  color: #00ff88;
-  border: 1px solid #00ff88;
+  background: #020607;
+  color: #9cffd0;
+  border: none;
   padding: 10px;
-  margin: 10px 0;
+  margin-bottom: 10px;
 }
 
-.module button {
-  margin-right: 10px;
-  padding: 10px;
-  background: black;
-  color: #00ff88;
-  border: 1px solid #00ff88;
+.row {
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 14px;
+  background: #00ff88;
+  border: none;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .back {
-  margin-top: 20px;
+  background: transparent;
+  color: #00ff88;
+  border: 1px solid #00ff88;
 }
 
-/* LOG */
-#logBox {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+/* CONSOLE */
+.console {
+  background: #020607;
   height: 120px;
-  background: #000;
-  border-top: 1px solid #00ff88;
   padding: 10px;
-  font-size: 14px;
   overflow-y: auto;
+  font-size: 14px;
+  color: #7dffbd;
+}
+
+.lesson pre {
+  background: #020607;
+  padding: 10px;
 }
